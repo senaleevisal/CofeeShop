@@ -18,7 +18,7 @@ public class Main {
         greeting();
         new UI().menuDisply();
 
-        while (true) {
+        L2:while (true) {
             ClearConsole();
             int num = -1;
             num = input.nextInt();
@@ -47,9 +47,10 @@ public class Main {
                     break;
                 case 8:
                     addFoodItem();
-                    break;
+                    continue L2;
                 case 9:
                     addEmployee();
+                    continue L2;
             }
         }
     }
@@ -72,55 +73,56 @@ public class Main {
             System.out.println();
 
             new UI().menu(coffee,sweets,fruit_juice, short_eats);
+            System.out.println("\nHello, would you like to order anything? (yes/no)");
+            String userInput = input.nextLine();
 
-            while (true) {
+            if (userInput.equalsIgnoreCase("yes") || userInput.equalsIgnoreCase("y")) {
+                while (true) {
 
-                System.out.println("\nHello, would you like to order anything? (yes/no)");
-
-                String userInput = input.nextLine();
-
-                if (userInput.equalsIgnoreCase("yes")) {
-                    System.out.println("\nGreat! Please provide the product code you'd like to order:");
+                    System.out.print("\tEnter Customer Phone Number : ");
+                    customerPhoneNumber = input.next();
+                    if (!PhoneNumberIsCorrect(customerPhoneNumber)) {
+                        System.out.println("\n\t\tInvalid Phone Number..Try again \n");
+                        System.out.print("\tDo you want to enter phone nuber again? (y/n) : ");
+                        char YesOrNo = input.next().charAt(0);
+                        if (YesOrNo == 'y' || YesOrNo == 'Y') {
+                            System.out.print("\033[6A"); //<---- Move the cursor up five lines ....
+                            System.out.print("\033[0J"); //<---- Clear the lines ....
+                        } else if (YesOrNo == 'n' || YesOrNo == 'N') {
+                            return; //<---- move to starting point ....
+                        }
+                    } else
+                        break;
                 }
-                System.out.print("\tEnter Customer Phone Number : ");
-                customerPhoneNumber = input.next();
-                if (!PhoneNumberIsCorrect(customerPhoneNumber)) {
-                    System.out.println("\n\t\tInvalid Phone Number..Try again \n");
-                    System.out.print("\tDo you want to enter phone nuber again? (y/n) : ");
-                    char YesOrNo = input.next().charAt(0);
-                    if (YesOrNo == 'y' || YesOrNo == 'Y') {
-                        System.out.print("\033[6A"); //<---- Move the cursor up five lines ....
-                        System.out.print("\033[0J"); //<---- Clear the lines ....
-                    } else if (YesOrNo == 'n' || YesOrNo == 'N') {
-                        return; //<---- move to starting point ....
+                if (cofeeShop.getCustomers().available_object(customerPhoneNumber)) {
+                    Customer customer = (Customer) cofeeShop.getCustomers().getObject(customerPhoneNumber);
+                    System.out.println(customer.getName() +" is Already Registered....! ");
+                    System.out.println("Customer ID is\t:" + customer.getNic());
+
+                }else {
+                    System.out.println("Do you want to add Customer..? (Y/N)");
+                    String YesOrNo1 = input.next();
+                    if (YesOrNo1.equalsIgnoreCase("yes") || YesOrNo1.equalsIgnoreCase("y")) {
+                        ClearConsole();
+
+                        System.out.print("Enter Name\t:");
+                        String customerName = input.next();
+                        System.out.print("Enter Email\t:");
+                        String customerEmail = input.next();
+                        System.out.print("Enter NIC\t;");
+                        String customerNic = input.next();
+                        Customer customer = new Customer(customerName, customerEmail, customerPhoneNumber, customerNic);
+                        cofeeShop.getCustomers().addItems(customer);
+                        System.out.println(" Successfully Registered...! ");
                     }
-                } else
-                    break;
-            }
-            if (cofeeShop.getCustomers().available_object(customerPhoneNumber)) {
-                Customer customer = (Customer) cofeeShop.getCustomers().getObject(customerPhoneNumber);
-                System.out.println(customer.getName() +" is Already Registered....! ");
-                System.out.println("Customer ID is\t:" + customer.getNic());
-
-            }else {
-                System.out.println("Do you want to add Employee..? (Y/N)");
-                String YesOrNo1 = input.next();
-                if (YesOrNo1.equalsIgnoreCase("yes") || YesOrNo1.equalsIgnoreCase("y")) {
-                    ClearConsole();
-
-                    System.out.print("Enter Name\t:");
-                    String customerName = input.next();
-                    System.out.print("Enter Email\t:");
-                    String customerEmail = input.next();
-                    System.out.print("Enter NIC\t;");
-                    String customerNic = input.next();
-                    Customer customer = new Customer(customerName, customerEmail, customerPhoneNumber, customerNic);
-                    cofeeShop.getCustomers().addItems(customer);
-                    System.out.println(" Successfully Registered...! ");
                 }
+                System.out.println("\nGreat! Please provide the product code you'd like to order:");
+                String YesOrNo2 = input.next();
+                if (YesOrNo2.equalsIgnoreCase("yes") || YesOrNo2.equalsIgnoreCase("y")) {
+                    new UI().menu(coffee,sweets,fruit_juice, short_eats);
+                }
+
             }
-
-
         }
     }
     private static void addEmployee() { //<------This method is used Add the employer for this System.
@@ -325,9 +327,11 @@ public class Main {
                 if (YesOrNo2.equalsIgnoreCase("yes") || YesOrNo2.equalsIgnoreCase("y")) {
 
                 }else {
+
                     break L1;
                 }
         }
+        return;
     }
 
 
