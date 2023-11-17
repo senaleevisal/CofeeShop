@@ -28,4 +28,8 @@ public class CofeeShop {
     public void removeCustomer(Customer customer){
 
     }
+
+    public void deleteOrder(int orderId) {
+        orders.removeItem(orderId);
+    }
 }

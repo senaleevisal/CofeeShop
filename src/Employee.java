@@ -4,12 +4,14 @@ public class Employee {
     private String name;
     private String role;
     private String nic;
+    private String email;
 
-    public Employee(int id, String name, String role, String nic) {
+    public Employee(int id, String name, String role, String nic , String email) {
         this.id = id;
         this.name = name;
         this.role = role;
         this.nic = nic;
+        this.email = email;
     }
 
     public int getId() {
@@ -22,6 +24,12 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getEmail() {
+        return this.email;
     }
 
     public void setRole(String role) {

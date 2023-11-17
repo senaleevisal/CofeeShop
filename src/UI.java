@@ -58,7 +58,7 @@ public class UI {
 
 
     }
-    public void menu(){
+    public void menu(Array_Handler coffee ,Array_Handler sweet , Array_Handler fruit_juice , Array_Handler short_eats){
 
         System.out.println("                          /$$      /$$                                 ");
         System.out.println("                         | $$$    /$$$                                 ");
@@ -70,25 +70,47 @@ public class UI {
         System.out.println("                         |__/     |__/  |_______/ |__/  |__/  |______/ ");
         System.out.println("                         ==============================================");
         System.out.println("________________________________________________________________________________________________________________");
-        System.out.println("|                                                   |                                                          |");
-        System.out.println("|                Coffee                             |                        Fruit Juice                       |");
-        System.out.println("|                ``````                             |                        ```````````                       |");
-        System.out.println("|   * Cappuccino      =Rs.550.00                    |        *Mango Juice            =Rs.200.00                |");
-        System.out.println("|   * Black Coffee    =Rs.100.00                    |        *Avocado Juice          =Rs.200.00                |");
-        System.out.println("|   * Nescafe         =Rs.100.00                    |        *Orange JUice           =Rs.200.00                |");
-        System.out.println("|   * Milk Coffee     =Rs.200.00                    |        *wood Apple Juice       =Rs.200.00                |");
-        System.out.println("|   * Egg Coffee      =Rs.400.00                    |        *Mix Fruit Juice        =Rs.250.00                |");
-        System.out.println("|                                                   |                                                          |");
-        System.out.println("| __________________________________________________|__________________________________________________________|");
-        System.out.println("|                                                   |                                                          |");
-        System.out.println("|                Sweets                             |                         Shorteats                        |");
-        System.out.println("|                ``````                             |                         `````````                        |");
-        System.out.println("|   *Milk Toffe       =Rs.15.00                     |        *Cookis                 =Rs.50.00                 |");
-        System.out.println("|   *Coconut Toffe    =Rs.20.00                     |        *Pastry                 =Rs.300.00                |");
-        System.out.println("|   *Bundhi           =Rs.200.00                    |        *Role                   =Rs.200.00                |");
-        System.out.println("|   *Guladjam         =Rs.50.00                     |        *Fish Bun               =Rs.150.00                |");
-        System.out.println("|   *Pani Walalu      =Rs.50.00                     |        *Cup Cake               =Rs.100.00                |");
-        System.out.println("|___________________________________________________|__________________________________________________________|");
+        System.out.printf("\t\t+---------------+-------------+-----------+\n");
+        System.out.printf("\t\t|   %-11s | %-11s | %-9s |  %-9s | %-12s |\n","Item ID", "Item Name","price ");
+        System.out.printf("\t\t+---------------+-------------+-----------+------------+\n");
+        System.out.println("|  %-30 ");
+        for(int i = (coffee.getArray().length-1); i >= 0; i-- ){
+            MenuItem menuItem =(MenuItem)coffee.getArray()[i];
+            System.out.printf("\t\t|   %-11s | %-11s | %-9s |  %-9s | %-12s |\n\n",menuItem.getId(), menuItem.getName(),menuItem.getPrice());
+
+        }
+        System.out.printf("\t+---------------+-------------+-----------+------------+--------------+\n");
+        System.out.printf("\t\t+---------------+-------------+-----------+\n");
+        System.out.printf("\t\t|   %-11s | %-11s | %-9s |  %-9s | %-12s |\n","Item ID", "Item Name","price ");
+        System.out.printf("\t\t+---------------+-------------+-----------+------------+\n");
+        System.out.println("|  %-30 ");
+        for(int i = (fruit_juice.getArray().length-1); i >= 0; i-- ){
+            MenuItem menuItem =(MenuItem)fruit_juice.getArray()[i];
+            System.out.printf("\t\t|   %-11s | %-11s | %-9s |  %-9s | %-12s |\n\n",menuItem.getId(), menuItem.getName(),menuItem.getPrice());
+
+        }
+        System.out.printf("\t+---------------+-------------+-----------+------------+--------------+\n");
+        System.out.printf("\t\t+---------------+-------------+-----------+\n");
+        System.out.printf("\t\t|   %-11s | %-11s | %-9s |  %-9s | %-12s |\n","Item ID", "Item Name","price ");
+        System.out.printf("\t\t+---------------+-------------+-----------+------------+\n");
+        System.out.println("|  %-30 ");
+        for(int i = (sweet.getArray().length-1); i >= 0; i-- ){
+            MenuItem menuItem =(MenuItem)sweet.getArray()[i];
+            System.out.printf("\t\t|   %-11s | %-11s | %-9s |  %-9s | %-12s |\n\n",menuItem.getId(), menuItem.getName(),menuItem.getPrice());
+
+        }
+        System.out.printf("\t+---------------+-------------+-----------+------------+--------------+\n");
+        System.out.printf("\t\t+---------------+-------------+-----------+\n");
+        System.out.printf("\t\t|   %-11s | %-11s | %-9s |  %-9s | %-12s |\n","Item ID", "Item Name","price ");
+        System.out.printf("\t\t+---------------+-------------+-----------+------------+\n");
+        System.out.println("|  %-30 ");
+        for(int i = (short_eats.getArray().length-1); i >= 0; i-- ){
+            MenuItem menuItem =(MenuItem)short_eats.getArray()[i];
+            System.out.printf("\t\t|   %-11s | %-11s | %-9s |  %-9s | %-12s |\n\n",menuItem.getId(), menuItem.getName(),menuItem.getPrice());
+
+        }
+        System.out.printf("\t+---------------+-------------+-----------+------------+--------------+\n");
+
     }
 
     public static void menuDisply(){
@@ -100,8 +122,20 @@ public class UI {
         System.out.println("\t\t06. Search Employee");
         System.out.println("\t\t07. Delete Employee");
         System.out.println("\t\t08. Add Items ");
+        System.out.println("\t\t09. Add Employer");
 
         System.out.print("\n\n\t\tInput your Optin\t: ");
+    }
+
+    public void addEmployeeUi(){
+        System.out.println(" _     _   ______                 _       ");
+        System.out.println("|\\      | |   | | |  ____|               | |      ");
+        System.out.println("|  \\   __| | __| | | |__   _ __ ___  _ __ | | ___  _   _  ___  ___ ");
+        System.out.println("| /\\ \\ / _` |/ _` | |  __| | '_ ` _ \\| '_ \\| |/ _ \\| | | |/ _ \\/ _ \\");
+        System.out.println("/ ____ \\ (_| | (_| | | |____| | | | | | |_) | | (_) | |_| |  __/  __/");
+        System.out.println("/_/    \\_\\__,_|\\__,_| |______|_| |_| |_| .__/|_|\\___/ \\__, |\\___|\\___|");
+        System.out.println("                                      | |           __/ |           ");
+        System.out.println("                                      |_|          |___/            \n\n");
     }
 
 }

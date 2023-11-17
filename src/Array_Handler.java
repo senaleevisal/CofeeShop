@@ -1,5 +1,6 @@
 public class Array_Handler {
 public static int oderId = 1;
+public static int employeerId = 0;
     private Object array[]; // array ekak hadadi array declaration size eka dapan
 
    private int index = 0;
@@ -14,6 +15,9 @@ public static int oderId = 1;
 
     public void removeItem(String array_itemName) {
         reduceArray(searchItem(array_itemName));
+    }
+    public void removeItem(int array_itemName) {
+        reduceArray(search_id(array_itemName));
     }
     private void reduceArray(int array_itemLocation){
         Object[] temp_array_items = new Object[array.length == 0 ? 0 : array.length - 1];
@@ -55,7 +59,16 @@ public static int oderId = 1;
     public Object getObject(String id) {
         return array[searchItem(id)];
     }
+    public Object getObject(int id) {
+        return array[search_id(id)];
+    }
     public boolean available_object(String id){
         return searchItem(id) != -1 ? true : false;
+    }
+    public boolean available_object(int id){
+        return search_id(id) != -1 ? true : false;
+    }
+    public Object[] getArray(){
+        return array;
     }
 }
